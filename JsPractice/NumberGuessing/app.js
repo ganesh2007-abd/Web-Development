@@ -11,16 +11,21 @@ let guess = parseInt(prompt("Enter a number:"))
 let attempts = 0
 
 while (parseInt(guess) !== number) {
-    attempts++
     if (guess === 'q') {
 
         break;
     }
+    guess = parseInt(guess)
     if (guess < number) {
         guess = prompt("Too Low")
+        attempts++
+    }
+    else if (guess > number) {
+        guess = prompt("Too High")
+        attempts++
     }
     else {
-        guess = prompt("Too High")
+        guess = prompt("Invalid guess!Try again")
     }
 }
 
