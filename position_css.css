@@ -1,0 +1,22 @@
+div {
+    color: black;
+    height: 200px;
+    width: 200px;
+    background-color: yellow;
+    border: 2px solid grey;
+    display: inline-block;
+    /* position: relative; */
+}
+
+.sect {
+    border: 2px solid green;
+    position: relative;
+}
+
+.second {
+    background-color: green;
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    right: 10px;
+}
