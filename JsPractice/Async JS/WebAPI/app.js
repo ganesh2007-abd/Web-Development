@@ -1,5 +1,5 @@
 setTimeout(function () {
-    document.body.style.backgroundColor = 'violet'
+    document.body.style.backgroundColor = 'white'
     setTimeout(function () {
         document.body.style.backgroundColor = 'indigo'
         setTimeout(function () {
