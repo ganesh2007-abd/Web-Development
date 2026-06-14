@@ -4,25 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TV Show Search</title>
+    <link rel="stylesheet" href="app.css">
 </head>
 
 <body>
 
-    <h1>TV Shows</h1>
-    <form id="from">
-        <input type="text" placeholder="search" name="input">
-        <button id="btn">search</button>
+    <div class="header">
+        <h1>TV Show Finder</h1>
+        <p>Discover your next favorite show. Search by title below.</p>
+    </div>
+
+    <form id="from" class="search-form">
+        <input type="text" placeholder="Search for TV shows..." name="input" class="search-input" required autocomplete="off">
+        <button id="btn" class="search-button">Search</button>
     </form>
 
     <div class="container">
-
+        <!-- Initial landing content or results will appear here -->
+        <div class="message-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                <line x1="7" y1="2" x2="7" y2="22"></line>
+                <line x1="17" y1="2" x2="17" y2="22"></line>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <line x1="2" y1="7" x2="7" y2="7"></line>
+                <line x1="2" y1="17" x2="7" y2="17"></line>
+                <line x1="17" y1="17" x2="22" y2="17"></line>
+                <line x1="17" y1="7" x2="22" y2="7"></line>
+            </svg>
+            <h3>Explore TV Shows</h3>
+            <p>Type a title above to find shows, descriptions, ratings, and more!</p>
+        </div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/axios@1.13.2/dist/axios.min.js"></script>
     <script src="app.js"></script>
-
 
 </body>
 
