@@ -1,0 +1,14 @@
+{
+  "name": "pathparams",
+  "version": "1.0.0",
+  "description": "working with pathvariables",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ganesh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
