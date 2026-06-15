@@ -1,0 +1,14 @@
+{
+  "name": "querystrings",
+  "version": "1.0.0",
+  "description": "to check usage of querystrings",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ganesh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
