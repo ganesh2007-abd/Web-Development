@@ -16,6 +16,10 @@ app.get('/r/:subreddit', (req, res) => {
     res.render('home.ejs', { subreddit: subreddit })
 })
 
+app.get('/conditionals', (req, res) => {
+    res.render('conditionals.ejs')
+})
+
 app.listen(3000, () => {
     console.log("Listening on 3000")
 })
