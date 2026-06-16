@@ -3,6 +3,8 @@ const app = express()
 const path = require('path')
 const Rdata = require('./data.json')
 
+app.use(express.static(path.join(__dirname, 'Public')))
+
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '/views'))
 
@@ -16,8 +18,9 @@ app.get('/r/:subreddit', (req, res) => {
     const { subreddit } = req.params
     const data = Rdata[subreddit]
     // console.log(data)
-    res.render('subreddit.ejs', { data })
     // res.render('home.ejs', { subreddit: subreddit })
+    res.render('subreddit.ejs', { data })
+
 })
 
 // app.get('/conditionals', (req, res) => {
