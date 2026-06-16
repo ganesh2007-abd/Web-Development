@@ -11,6 +11,11 @@ app.get('/', (req, res) => {
     res.render('home.ejs', { rand: rand })
 })
 
+app.get('/r/:subreddit', (req, res) => {
+    const { subreddit } = req.params
+    res.render('home.ejs', { subreddit: subreddit })
+})
+
 app.listen(3000, () => {
     console.log("Listening on 3000")
 })
