@@ -8,11 +8,16 @@ app.use(express.static(path.join(__dirname, 'Public')))
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '/views'))
 
-// app.get('/', (req, res) => {
-//     const rand = Math.floor(Math.random() * 10) + 1
-//     // res.send('Hello')
-//     res.render('home.ejs', { rand: rand })
-// })
+app.get('/', (req, res) => {
+
+    // res.send('Hello')
+    res.render('home.ejs')
+})
+
+app.get('/rand', (req, res) => {
+    const rand = Math.floor(Math.random() * 10) + 1
+    res.render('rand.ejs', { rand })
+})
 
 app.get('/r/:subreddit', (req, res) => {
     const { subreddit } = req.params
