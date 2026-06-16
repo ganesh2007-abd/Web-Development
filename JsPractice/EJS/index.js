@@ -6,9 +6,9 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '/views'))
 
 app.get('/', (req, res) => {
-    console.dir(req)
+    const rand = Math.floor(Math.random() * 10) + 1
     // res.send('Hello')
-    res.render('home.ejs')
+    res.render('home.ejs', { rand: rand })
 })
 
 app.listen(3000, () => {
