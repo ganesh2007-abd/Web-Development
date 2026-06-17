@@ -28,14 +28,14 @@ app.get('/r/:subreddit', (req, res) => {
 
 })
 
-// app.get('/conditionals', (req, res) => {
-//     res.render('conditionals.ejs')
-// })
+app.get('/conditionals', (req, res) => {
+    res.render('conditionals.ejs')
+})
 
-// app.get('/cats', (req, res) => {
-//     const cats = ['ganesh', 'honey', 'suvarna', 'rambabu']
-//     res.render('loops', { cats })
-// })
+app.get('/cats', (req, res) => {
+    const cats = ['ganesh', 'honey', 'suvarna', 'rambabu']
+    res.render('loops', { cats })
+})
 
 app.listen(3000, () => {
     console.log("Listening on 3000")
