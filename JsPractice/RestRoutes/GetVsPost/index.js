@@ -31,9 +31,23 @@ app.get('/comments', (req, res) => {
     res.render('comments/index', { comments })
 })
 
+
 app.get('/home', (req, res) => {
     res.send("This is get response")
 })
+
+app.get('/comments/new', (req, res) => {
+    // res.render('New comment page!!')
+    res.render('comments/NewComment')
+})
+
+app.post('/comments', (req, res) => {
+    const { username, comment } = req.body
+    comments.push({ user: username, text: comment })
+    console.log(comments)
+    res.send('It worked')
+})
+
 
 app.post('/home', (req, res) => {
     const data = req.body
