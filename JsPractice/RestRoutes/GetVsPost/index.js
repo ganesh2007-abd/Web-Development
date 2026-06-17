@@ -27,14 +27,15 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+app.get('/home', (req, res) => {
+    res.send("This is get response")
+})
+
+
 app.get('/comments', (req, res) => {
     res.render('comments/index', { comments })
 })
 
-
-app.get('/home', (req, res) => {
-    res.send("This is get response")
-})
 
 app.get('/comments/new', (req, res) => {
     // res.render('New comment page!!')
@@ -45,7 +46,7 @@ app.post('/comments', (req, res) => {
     const { username, comment } = req.body
     comments.push({ user: username, text: comment })
     console.log(comments)
-    res.send('It worked')
+    res.redirect('/comments')
 })
 
 
