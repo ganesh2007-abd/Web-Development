@@ -4,18 +4,22 @@ const app = express()
 
 const comments = [
     {
+        id: 1,
         user: 'ganesh',
         text: 'I have a group of companies'
     },
     {
+        id: 2,
         user: 'lakshmi',
         text: 'i have a son having group of companies,lol'
     },
     {
+        id: 3,
         user: 'suvarna',
         text: 'I have a brother having group of companies'
     },
     {
+        id: 4,
         user: 'rambabu',
         text: 'If my boy has comapany i too have a company'
     }
@@ -42,10 +46,17 @@ app.get('/comments/new', (req, res) => {
     res.render('comments/NewComment')
 })
 
+app.get('/comments/:id', (req, res) => {
+    // console.log(req.body)
+    const { id } = req.params
+    const comment = comments.find(c => c.id === parseInt(id))
+    res.render('comments/show', { comment })
+})
+
 app.post('/comments', (req, res) => {
     const { username, comment } = req.body
     comments.push({ user: username, text: comment })
-    console.log(comments)
+    // console.log(comments)
     res.redirect('/comments')
 })
 
