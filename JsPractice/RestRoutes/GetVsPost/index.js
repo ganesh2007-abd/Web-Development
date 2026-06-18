@@ -1,5 +1,7 @@
 const express = require('express')
 const path = require('path')
+const methodoverride = require('method-override')
+
 const { v4: uuid } = require('uuid')
 
 const app = express()
@@ -32,6 +34,7 @@ app.set('view engine', 'ejs')
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(methodoverride('_method'))
 
 // app.get('/home', (req, res) => {
 //     res.send("This is get response")
@@ -55,8 +58,17 @@ app.get('/comments/:id', (req, res) => {
     console.log("Into app.get('/comments/:id')")
     const { id } = req.params
     const comment = comments.find(c => c.id === id)
-    console.log(comment)
+    // console.log(comment)
+    // console.log(comment)
     res.render('comments/show', { comment })
+})
+
+app.get('/comments/:id/edit', (req, res) => {
+    console.log("Into app.get('/comments/:id/edit')")
+    const { id } = req.params
+    const comment = comments.find(c => c.id === id)
+    // console.log(comment)
+    res.render('comments/edit', { comment })
 })
 
 app.post('/comments', (req, res) => {
@@ -70,13 +82,14 @@ app.post('/comments', (req, res) => {
 app.patch('/comments/:id', (req, res) => {
     console.log('INto app.patch("/comments/id")')
     const { id } = req.params
-    console.log
-    const newComment = req.body.comment
-    console.log(newComment)
+    // console.log(id)
+    const newComment = req.body.editcomment
+    // console.log(newComment)
     const foundcomment = comments.find(c => c.id === id)
-    console.log(foundcomment)
+    // console.log(foundcomment)
     foundcomment.text = newComment
-    res.send("Updated Successfully")
+    // res.send("Updated Successfully")
+    res.redirect(`/comments/${id}`)
 })
 
 // app.post('/home', (req, res) => {
