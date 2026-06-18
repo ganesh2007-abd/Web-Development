@@ -1,25 +1,27 @@
 const express = require('express')
 const path = require('path')
+const { v4: uuid } = require('uuid')
+
 const app = express()
 
 const comments = [
     {
-        id: 1,
+        id: uuid(),
         user: 'ganesh',
         text: 'I have a group of companies'
     },
     {
-        id: 2,
+        id: uuid(),
         user: 'lakshmi',
         text: 'i have a son having group of companies,lol'
     },
     {
-        id: 3,
+        id: uuid(),
         user: 'suvarna',
         text: 'I have a brother having group of companies'
     },
     {
-        id: 4,
+        id: uuid(),
         user: 'rambabu',
         text: 'If my boy has comapany i too have a company'
     }
@@ -49,13 +51,13 @@ app.get('/comments/new', (req, res) => {
 app.get('/comments/:id', (req, res) => {
     // console.log(req.body)
     const { id } = req.params
-    const comment = comments.find(c => c.id === parseInt(id))
+    const comment = comments.find(c => c.id === id)
     res.render('comments/show', { comment })
 })
 
 app.post('/comments', (req, res) => {
     const { username, comment } = req.body
-    comments.push({ user: username, text: comment })
+    comments.push({ user: username, text: comment, id: uuid() })
     // console.log(comments)
     res.redirect('/comments')
 })
