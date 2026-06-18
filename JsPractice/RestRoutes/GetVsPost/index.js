@@ -6,7 +6,7 @@ const { v4: uuid } = require('uuid')
 
 const app = express()
 
-const comments = [
+let comments = [
     {
         id: uuid(),
         user: 'ganesh',
@@ -90,6 +90,14 @@ app.patch('/comments/:id', (req, res) => {
     foundcomment.text = newComment
     // res.send("Updated Successfully")
     res.redirect(`/comments/${id}`)
+})
+
+
+app.delete('/comments/:id', (req, res) => {
+    console.log('INto app.delete("/comments/id")')
+    const { id } = req.params
+    comments = comments.filter(c => c.id !== id)
+    res.redirect('/comments')
 })
 
 // app.post('/home', (req, res) => {
