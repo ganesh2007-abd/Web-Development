@@ -40,6 +40,10 @@ const product = new mongoose.Schema({
     }
 })
 
+product.statics.firesale = function () {
+    return this.updateMany({}, { onSale: true, price: 0 })
+}
+
 product.methods.greet = function () {
     console.log(`Hello from ${this.name}`)
 }
