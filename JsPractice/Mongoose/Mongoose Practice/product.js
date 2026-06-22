@@ -16,7 +16,7 @@ const product = new mongoose.Schema({
         maxLength: 20
     },
     price: {
-        type: String,
+        type: Number,
         min: 0
     },
     onSale: {
@@ -37,8 +37,19 @@ const product = new mongoose.Schema({
 })
 
 const Product = mongoose.model('Product', product)
-const bike = new Product({ name: 'Mountain Bike', price: 200000, categories: ['bike', 'safety', 'cycling'] })
-bike.save()
+// const pump = new Product({ name: 'Tire Pump', price: 400, categories: ['cycling'] })
+// pump.save()
+//     .then(data => {
+//         console.log("It worked")
+//         console.log(data)
+//     })
+//     .catch(err => {
+//         console.log("Error")
+//         console.log(err)
+//     })
+
+
+Product.findOneAndUpdate({ name: "Mountain Bike" }, { name: "Speeding car", price: -300000, categories: ['Racing', 'Car'] }, { new: true, runValidators: true })
     .then(data => {
         console.log("It worked")
         console.log(data)
