@@ -33,23 +33,16 @@ const product = new mongoose.Schema({
             type: Number,
             default: 0
         }
+    },
+    size: {
+        type: String,
+        enum: ['S', 'M', 'L']
     }
 })
 
 const Product = mongoose.model('Product', product)
-// const pump = new Product({ name: 'Tire Pump', price: 400, categories: ['cycling'] })
-// pump.save()
-//     .then(data => {
-//         console.log("It worked")
-//         console.log(data)
-//     })
-//     .catch(err => {
-//         console.log("Error")
-//         console.log(err)
-//     })
-
-
-Product.findOneAndUpdate({ name: "Mountain Bike" }, { name: "Speeding car", price: -300000, categories: ['Racing', 'Car'] }, { new: true, runValidators: true })
+const jersey = new Product({ name: 'RCB Jersey', price: 1400, categories: ['RCB', 'cricket', 'virat', 'bengaluru'], size: 'M' })
+jersey.save()
     .then(data => {
         console.log("It worked")
         console.log(data)
@@ -58,3 +51,14 @@ Product.findOneAndUpdate({ name: "Mountain Bike" }, { name: "Speeding car", pric
         console.log("Error")
         console.log(err)
     })
+
+
+// Product.findOneAndUpdate({ name: "Mountain Bike" }, { name: "Speeding car", price: -300000, categories: ['Racing', 'Car'] }, { new: true, runValidators: true })
+//     .then(data => {
+//         console.log("It worked")
+//         console.log(data)
+//     })
+//     .catch(err => {
+//         console.log("Error")
+//         console.log(err)
+//     })
