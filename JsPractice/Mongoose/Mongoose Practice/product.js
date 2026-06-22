@@ -12,15 +12,32 @@ mongoose.connect('mongodb://127.0.0.1:27017/movieApp')
 const product = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        maxLength: 20
     },
     price: {
-        type: String
+        type: String,
+        min: 0
+    },
+    onSale: {
+        type: Boolean,
+        default: true
+    },
+    categories: [String],
+    qty: {
+        online: {
+            type: Number,
+            default: 0
+        },
+        onstore: {
+            type: Number,
+            default: 0
+        }
     }
 })
 
 const Product = mongoose.model('Product', product)
-const bike = new Product({ name: 'Mountain Bike', price: 200000 })
+const bike = new Product({ name: 'Mountain Bike', price: 200000, categories: ['bike', 'safety', 'cycling'] })
 bike.save()
     .then(data => {
         console.log("It worked")
