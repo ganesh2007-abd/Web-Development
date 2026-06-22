@@ -17,7 +17,7 @@ const product = new mongoose.Schema({
     },
     price: {
         type: Number,
-        min: 0
+        min: [0, 'price must be positive']
     },
     onSale: {
         type: Boolean,
@@ -41,7 +41,7 @@ const product = new mongoose.Schema({
 })
 
 const Product = mongoose.model('Product', product)
-const jersey = new Product({ name: 'RCB Jersey', price: 1400, categories: ['RCB', 'cricket', 'virat', 'bengaluru'], size: 'M' })
+const jersey = new Product({ name: 'RCB Jersey', price: -1400, categories: ['RCB', 'cricket', 'virat', 'bengaluru'], size: 'M' })
 jersey.save()
     .then(data => {
         console.log("It worked")
