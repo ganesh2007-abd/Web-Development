@@ -31,12 +31,21 @@ app.use((req, res, next) => {
     next()
 })
 
+app.use('/dogs', (req, res, next) => {
+    console.log('I love dogs')
+    next()
+})
+
 app.get('/', (req, res) => {
     res.send('Home')
 })
 
 app.get('/dogs', (req, res) => {
     res.send('Woof Woof!!')
+})
+
+app.use((req, res) => {
+    res.status(404).send('Not Found')
 })
 
 app.listen(3000, () => {
