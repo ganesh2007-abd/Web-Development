@@ -26,15 +26,21 @@ app.use(morgan('tiny'))
 //     console.log("fourth Middleware - 2")
 // })
 
-app.use((req, res, next) => {
-    console.log(req.method.toUpperCase(), req.path)
-    next()
-})
+const verify = (req, res, next) => {
+    // console.log(req.method.toUpperCase(), req.path)
+    const { password } = req.query
+    if (password === 'chickennugget') {
+        next()
+    }
+    res.send('you need pass')
+}
 
 app.use('/dogs', (req, res, next) => {
     console.log('I love dogs')
     next()
 })
+
+
 
 app.get('/', (req, res) => {
     res.send('Home')
@@ -42,6 +48,10 @@ app.get('/', (req, res) => {
 
 app.get('/dogs', (req, res) => {
     res.send('Woof Woof!!')
+})
+
+app.get('/secret', verify, (req, res) => {
+    res.send('I wont tell you a secret')
 })
 
 app.use((req, res) => {
