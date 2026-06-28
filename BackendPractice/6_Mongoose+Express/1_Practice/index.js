@@ -40,33 +40,53 @@ app.get('/products/new', (req, res) => {
 })
 
 app.get('/products/:id', async (req, res, next) => {
-    const { id } = req.params
-    const product = await Product.findById(id)
-    if (!product) {
-        return next(new AppError('Good bye', 401))
+    try {
+        const { id } = req.params
+        const product = await Product.findById(id)
+        if (!product) {
+            throw next(new AppError('Good bye', 401))
+        }
+        // console.log(product)
+        res.render('products/show.ejs', { product })
     }
-    // console.log(product)
-    res.render('products/show.ejs', { product })
+    catch (e) {
+        next(e)
+    }
 })
 
 app.get('/products/:id/edit', async (req, res) => {
-    const { id } = req.params
-    const product = await Product.findById(id)
-    res.render('products/edit.ejs', { product, categories })
+    try {
+        const { id } = req.params
+        const product = await Product.findById(id)
+        res.render('products/edit.ejs', { product, categories })
+    }
+    catch (e) {
+        next(e)
+    }
 })
 
-app.post('/products', async (req, res) => {
-    const newprod = new Product(req.body)
-    // console.log(newprod)
-    await newprod.save()
-    res.redirect('/products/')
+app.post('/products', async (req, res, next) => {
+    try {
+        const newprod = new Product(req.body)
+        // console.log(newprod)
+        await newprod.save()
+        res.redirect('/products/')
+    }
+    catch (e) {
+        next(e)
+    }
 
 })
 
 app.put('/products/:id', async (req, res) => {
-    const { id } = req.params
-    const foundproduct = await Product.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
-    res.redirect(`/products/${foundproduct._id}`)
+    try {
+        const { id } = req.params
+        const foundproduct = await Product.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
+        res.redirect(`/products/${foundproduct._id}`)
+    }
+    catch (e) {
+        next(e)
+    }
 })
 
 app.delete('/products/:id', async (req, res) => {
