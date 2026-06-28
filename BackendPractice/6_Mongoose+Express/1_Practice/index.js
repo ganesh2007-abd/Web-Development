@@ -3,6 +3,7 @@ const app = express()
 const path = require('path')
 const ejs = require('ejs')
 const methodOverride = require('method-override')
+const AppError = require('./AppError')
 
 const mongoose = require('mongoose')
 
@@ -27,7 +28,6 @@ app.use(methodOverride('_method'))
 
 const categories = ['fruit', 'vegetable', 'dairy']
 
-
 app.get('/products', async (req, res) => {
     const prods = await Product.find({})
     res.render('products/index.ejs', { prods })
@@ -35,12 +35,16 @@ app.get('/products', async (req, res) => {
 
 app.get('/products/new', (req, res) => {
     res.render('products/new.ejs', { categories })
+
     // res.send("New product")
 })
 
-app.get('/products/:id', async (req, res) => {
+app.get('/products/:id', async (req, res, next) => {
     const { id } = req.params
     const product = await Product.findById(id)
+    if (!product) {
+        return next(new AppError('Good bye', 401))
+    }
     // console.log(product)
     res.render('products/show.ejs', { product })
 })
@@ -54,9 +58,9 @@ app.get('/products/:id/edit', async (req, res) => {
 app.post('/products', async (req, res) => {
     const newprod = new Product(req.body)
     // console.log(newprod)
-    await newprod.save(
-        res.redirect('/products/')
-    )
+    await newprod.save()
+    res.redirect('/products/')
+
 })
 
 app.put('/products/:id', async (req, res) => {
@@ -70,6 +74,11 @@ app.delete('/products/:id', async (req, res) => {
     const delprod = await Product.findByIdAndDelete(id)
     console.log("deleetd csuccessfully")
     res.redirect('/products')
+})
+
+app.use((err, req, res, next) => {
+    const { status = 500, message = "Somthing Wrong" } = err;
+    res.status(status).send(message)
 })
 
 app.listen(3000, () => {
