@@ -28,6 +28,12 @@ app.use(methodOverride('_method'))
 
 const categories = ['fruit', 'vegetable', 'dairy']
 
+function wrapAsync(fn) {
+    return function (req, res, next) {
+        fn(req, res, next).catch(e => next(e))
+    }
+}
+
 app.get('/products', async (req, res) => {
     const prods = await Product.find({})
     res.render('products/index.ejs', { prods })
@@ -39,61 +45,61 @@ app.get('/products/new', (req, res) => {
     // res.send("New product")
 })
 
-app.get('/products/:id', async (req, res, next) => {
-    try {
-        const { id } = req.params
-        const product = await Product.findById(id)
-        if (!product) {
-            throw next(new AppError('Good bye', 401))
-        }
-        // console.log(product)
-        res.render('products/show.ejs', { product })
-    }
-    catch (e) {
-        next(e)
-    }
-})
+app.get('/products/:id', wrapAsync(async (req, res, next) => {
 
-app.get('/products/:id/edit', async (req, res) => {
-    try {
-        const { id } = req.params
-        const product = await Product.findById(id)
-        res.render('products/edit.ejs', { product, categories })
+    const { id } = req.params
+    const product = await Product.findById(id)
+    if (!product) {
+        throw next(new AppError('Good bye', 401))
     }
-    catch (e) {
-        next(e)
-    }
-})
+    // console.log(product)
+    res.render('products/show.ejs', { product })
 
-app.post('/products', async (req, res, next) => {
-    try {
-        const newprod = new Product(req.body)
-        // console.log(newprod)
-        await newprod.save()
-        res.redirect('/products/')
-    }
-    catch (e) {
-        next(e)
-    }
+}))
 
-})
+app.get('/products/:id/edit', wrapAsync(async (req, res) => {
 
-app.put('/products/:id', async (req, res) => {
-    try {
-        const { id } = req.params
-        const foundproduct = await Product.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
-        res.redirect(`/products/${foundproduct._id}`)
-    }
-    catch (e) {
-        next(e)
-    }
-})
+    const { id } = req.params
+    const product = await Product.findById(id)
+    res.render('products/edit.ejs', { product, categories })
 
-app.delete('/products/:id', async (req, res) => {
+}))
+
+app.post('/products', wrapAsync(async (req, res, next) => {
+
+    const newprod = new Product(req.body)
+    // console.log(newprod)
+    await newprod.save()
+    res.redirect('/products/')
+
+
+}))
+
+app.put('/products/:id', wrapAsync(async (req, res) => {
+
+    const { id } = req.params
+    const foundproduct = await Product.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
+    res.redirect(`/products/${foundproduct._id}`)
+
+
+}))
+
+app.delete('/products/:id', wrapAsync(async (req, res) => {
     const { id } = req.params
     const delprod = await Product.findByIdAndDelete(id)
     console.log("deleetd csuccessfully")
     res.redirect('/products')
+}))
+
+function handleValidationErr(err) {
+    return new AppError(`Validation failed...${err.message}`, 404)
+}
+
+app.use((err, req, res, next) => {
+    if (err.name === 'Validation Error') {
+        err = handleValidationErr(err)
+    }
+    next(err)
 })
 
 app.use((err, req, res, next) => {
