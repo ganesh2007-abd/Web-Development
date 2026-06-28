@@ -3,6 +3,8 @@ const morgan = require('morgan')
 
 const app = express()
 
+const AppError = require('./AppError')
+
 app.use(morgan('tiny'))
 
 // app.use((req, res, next) => {
@@ -33,7 +35,7 @@ const verify = (req, res, next) => {
         next()
     }
     // res.send('you need pass')
-    throw new Error("Here is your error!")
+    throw new AppError("Here is your error!", 401)
 }
 
 app.use('/dogs', (req, res, next) => {
@@ -61,7 +63,8 @@ app.use((req, res) => {
 
 app.use((err, req, res, next) => {
     console.log("***************ERROR*****************")
-    next(err)
+    const { status = 400, message = "Something Wrong" } = err
+    res.status(status).send(message)
 })
 
 app.listen(3000, () => {
