@@ -32,7 +32,8 @@ const verify = (req, res, next) => {
     if (password === 'chickennugget') {
         next()
     }
-    res.send('you need pass')
+    // res.send('you need pass')
+    throw new Error("Here is your error!")
 }
 
 app.use('/dogs', (req, res, next) => {
