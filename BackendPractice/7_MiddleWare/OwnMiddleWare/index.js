@@ -59,6 +59,12 @@ app.use((req, res) => {
     res.status(404).send('Not Found')
 })
 
+app.use((err, req, res, next) => {
+    console.log("***************ERROR*****************")
+    next(err)
+})
+
 app.listen(3000, () => {
     console.log("Listening on 3000...")
+
 })
