@@ -57,11 +57,19 @@ const User = mongoose.model('User', userschema)
 const Tweet = mongoose.model('Tweet', tweetschema)
 
 const maketweets = async () => {
-    const user = new User({ name: 'ganesh', age: 19 })
-    const tweet = new Tweet({ text: 'I love RCB', likes: 0 })
-    tweet.user = user
-    await user.save()
-    await tweet.save()
+    // const user = new User({ name: 'ganesh', age: 19 })
+    const user = await User.findOne({ name: 'ganesh' })
+    const tweet2 = new Tweet({ text: 'I love coding', likes: 1234 })
+    tweet2.user = user
+    // await user.save()
+    await tweet2.save()
 }
 
-maketweets()
+const findtweet = async () => {
+    const tweets = await Tweet.find({}).populate('user')
+    console.log(tweets)
+}
+
+findtweet()
+
+// maketweets()
