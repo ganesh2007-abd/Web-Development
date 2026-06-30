@@ -53,5 +53,3 @@ const addaddress = async (id) => {
     console.log(res)
 }
 
-makeuser()
-addaddress('6a4366f4fecbf361bc4e457e')
