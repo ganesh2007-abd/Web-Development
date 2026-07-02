@@ -17,7 +17,7 @@ const productschema = new mongoose.Schema({
         enum: ['fruit', 'vegetable', 'dairy']
     },
     farm: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Farm'
     }
 })

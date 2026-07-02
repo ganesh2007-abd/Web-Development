@@ -22,3 +22,5 @@ const farmschema = new Schema({
 })
 
 const Farm = mongoose.model('Farm', farmschema)
+
+module.exports = Farm
