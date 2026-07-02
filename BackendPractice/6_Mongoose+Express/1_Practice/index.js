@@ -27,6 +27,7 @@ app.set('view engine', ejs)
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
+
 app.get('/farms', async (req, res) => {
     const farms = await Farm.find({})
     res.render('farms/index.ejs', { farms })
@@ -49,8 +50,25 @@ app.post('/farms', async (req, res) => {
     res.redirect('/farms')
 })
 
-
 const categories = ['fruit', 'vegetable', 'dairy']
+
+app.get('/farms/:id/products/new', (req, res) => {
+    const id = req.params.id
+    res.render('products/new.ejs', { categories, id })
+})
+
+app.post('/farms/:id/products', async (req, res) => {
+    const id = req.params.id
+    const farm = await Farm.findById(id)
+    console.log(req.body)
+    const { name, price, category } = req.body
+    const product = await new Product({ name, price, category })
+    product.farm = farm;
+    farm.products.push(product)
+    await farm.save()
+    await product.save()
+    res.send('done!!')
+})
 
 function wrapAsync(fn) {
     return function (req, res, next) {
