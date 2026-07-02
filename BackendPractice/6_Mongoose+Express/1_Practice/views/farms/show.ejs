@@ -23,7 +23,23 @@
             <%= farm.email %>
         </li>
     </ul>
-    <a href="/farms">Back to All farms</a>
+    <h2>All products</h2>
+
+    <% for(let product of farm.products){%>
+        <ul>
+            <li>
+                <a href="/products/<%= product._id %>">
+                    <%= product.name %>
+                </a>
+            </li>
+        </ul>
+        <%} %>
+
+            <a href="/farms/<%= farm._id %>/products/new">Add a product</a>
+            <a href="/farms">Back to All farms</a>
+            <form action="/farms/<%= farm._id %>?_method=DELETE" method="POST">
+                <button>Delete</button>
+            </form>
 
 </body>
 

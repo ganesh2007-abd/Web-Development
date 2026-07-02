@@ -39,9 +39,14 @@ app.get('/farms/new', (req, res) => {
 })
 
 app.get('/farms/:id', async (req, res) => {
-    const farm = await Farm.findById(req.params.id)
+    const farm = await Farm.findById(req.params.id).populate('products')
     console.log(farm)
     res.render('farms/show.ejs', { farm })
+})
+
+app.delete('/farms/:id', async (req, res) => {
+    const farm = await Farm.findByIdAndDelete(req.params.id)
+    res.redirect('/farms')
 })
 
 app.post('/farms', async (req, res) => {
@@ -67,7 +72,7 @@ app.post('/farms/:id/products', async (req, res) => {
     farm.products.push(product)
     await farm.save()
     await product.save()
-    res.send('done!!')
+    res.redirect(`/farms/${farm._id}`)
 })
 
 function wrapAsync(fn) {
@@ -90,7 +95,7 @@ app.get('/products/new', (req, res) => {
 app.get('/products/:id', wrapAsync(async (req, res, next) => {
 
     const { id } = req.params
-    const product = await Product.findById(id)
+    const product = await Product.findById(id).populate('farm', 'name')
     if (!product) {
         throw next(new AppError('Good bye', 401))
     }
@@ -130,7 +135,7 @@ app.delete('/products/:id', wrapAsync(async (req, res) => {
     const { id } = req.params
     const delprod = await Product.findByIdAndDelete(id)
     console.log("deleetd csuccessfully")
-    res.redirect('/products')
+    res.redirect('/farms')
 }))
 
 function handleValidationErr(err) {

@@ -22,9 +22,11 @@
             Category:
             <%= product.category %>
         </li>
+        <a href="/farms/<%= product.farm._id %>">
+            <%= product.farm.name %>
+        </a>
     </ul>
-    <a href="/products">Back to Products</a>
-    <a href="/products/<%= product._id %>/edit">Edit Product</a>
+    <a href="/farms/<%= product.farm._id %>">Back to farm</a>
     <form action="/products/<%=product._id%>?_method=DELETE" method="post">
         <button>Delete</button>
     </form>
