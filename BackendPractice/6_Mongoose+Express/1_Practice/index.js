@@ -27,15 +27,20 @@ app.set('view engine', ejs)
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
+app.get('/farms', async (req, res) => {
+    const farms = await Farm.find({})
+    res.render('farms/index.ejs', { farms })
+})
 
 app.get('/farms/new', (req, res) => {
     res.render('farms/new.ejs')
     // res.send("Here is your farms")
 })
 
-app.get('/farms', async (req, res) => {
-    const farms = await Farm.find({})
-    res.render('farms/index.ejs', { farms })
+app.get('/farms/:id', async (req, res) => {
+    const farm = await Farm.findById(req.params.id)
+    console.log(farm)
+    res.render('farms/show.ejs', { farm })
 })
 
 app.post('/farms', async (req, res) => {
@@ -43,6 +48,7 @@ app.post('/farms', async (req, res) => {
     await farm.save()
     res.redirect('/farms')
 })
+
 
 const categories = ['fruit', 'vegetable', 'dairy']
 
