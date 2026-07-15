@@ -61,9 +61,15 @@ app.get('/secret', (req, res) => {
     if (!req.session.user_id) {
         return res.redirect('/login')
     }
-    res.send('this is a secret!!')
+    res.render('secret.ejs')
 
 })
+
+app.post('/logout', (req, res) => {
+    req.session.user_id = null
+    res.redirect('/login')
+})
+
 app.listen(3000, () => {
     console.log('listening on 3000...')
 })
