@@ -1,9 +1,12 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const session = require('express-session')
 const app = express()
 
 const bcrypt = require('bcrypt')
 const User = require('./models/user')
+
+app.use(session({ secret: 'helloboyzz' }))
 
 mongoose.connect('mongodb://127.0.0.1:27017/AuthDemo')
     .then(() => {
@@ -31,6 +34,7 @@ app.post('/register', async (req, res) => {
         password: hash
     })
     await user.save()
+    req.session.user_id = user._id
     res.redirect('/secret')
 })
 
@@ -44,8 +48,8 @@ app.post('/login', async (req, res) => {
     const result = await bcrypt.compare(password, user.password)
     // console.log(result)
     if (result) {
-        res.send('Success')
-
+        req.session.user_id = user._id
+        res.redirect('/secret')
     }
     else {
         res.send('Failed')
@@ -54,6 +58,9 @@ app.post('/login', async (req, res) => {
 })
 
 app.get('/secret', (req, res) => {
+    if (!req.session.user_id) {
+        return res.redirect('/login')
+    }
     res.send('this is a secret!!')
 
 })
