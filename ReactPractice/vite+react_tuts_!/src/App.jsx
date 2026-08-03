@@ -7,6 +7,7 @@ import Greeter from "./greeter"
 import DieRoll from './dieroll'
 import ListPicker from './listpick'
 import Conditionals from './conditionals'
+import UseMap from './mapusage'
 
 function App() {
   return (
@@ -17,10 +18,11 @@ function App() {
       <DieRoll numSides={5} />
       <DieRoll /> */}
       {/* <ListPicker values={[12, 3, 5]} /> */}
+      {/* <Conditionals />
       <Conditionals />
       <Conditionals />
-      <Conditionals />
-      <Conditionals />
+      <Conditionals /> */}
+      <UseMap colors={['green', 'orange', 'red']} />
     </>
   )
 }
