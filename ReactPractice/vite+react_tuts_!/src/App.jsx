@@ -5,15 +5,17 @@
 import './App.css'
 import Greeter from "./greeter"
 import DieRoll from './dieroll'
+import ListPicker from './listpick'
 
 function App() {
   return (
     <>
-      <Greeter name="ganesh" />
+      {/* <Greeter name="ganesh" />
       <Greeter name="sups" from="ganesh" />
       <DieRoll numSides={10} />
       <DieRoll numSides={5} />
-      <DieRoll />
+      <DieRoll /> */}
+      <ListPicker values={[12, 3, 5]} />
     </>
   )
 }
