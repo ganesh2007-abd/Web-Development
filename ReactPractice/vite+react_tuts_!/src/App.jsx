@@ -4,9 +4,18 @@
 // import heroImg from './assets/hero.png'
 import './App.css'
 import Greeter from "./greeter"
+import DieRoll from './dieroll'
 
 function App() {
-  return <Greeter name="ganesh" />
+  return (
+    <>
+      <Greeter name="ganesh" />
+      <Greeter name="sups" from="ganesh" />
+      <DieRoll numSides={10} />
+      <DieRoll numSides={5} />
+      <DieRoll />
+    </>
+  )
 }
 
 export default App
