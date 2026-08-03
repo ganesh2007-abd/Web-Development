@@ -6,6 +6,7 @@ import './App.css'
 import Greeter from "./greeter"
 import DieRoll from './dieroll'
 import ListPicker from './listpick'
+import Conditionals from './conditionals'
 
 function App() {
   return (
@@ -15,7 +16,11 @@ function App() {
       <DieRoll numSides={10} />
       <DieRoll numSides={5} />
       <DieRoll /> */}
-      <ListPicker values={[12, 3, 5]} />
+      {/* <ListPicker values={[12, 3, 5]} /> */}
+      <Conditionals />
+      <Conditionals />
+      <Conditionals />
+      <Conditionals />
     </>
   )
 }
