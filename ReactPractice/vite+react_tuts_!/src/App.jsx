@@ -13,10 +13,10 @@ import ShoppingList from './shoppingList'
 function App() {
 
   const data = [
-    { item: "eggs", quantity: 32, completed: false },
-    { item: "banana", quantity: 14, completed: true },
-    { item: "chips", quantity: 15, completed: false },
-    { item: "curd", quantity: 10, completed: true },
+    { id: 1, item: "eggs", quantity: 32, completed: false },
+    { id: 2, item: "banana", quantity: 14, completed: true },
+    { id: 3, item: "chips", quantity: 15, completed: false },
+    { id: 4, item: "curd", quantity: 10, completed: true },
   ]
 
   return (
