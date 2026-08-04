@@ -8,8 +8,17 @@ import DieRoll from './dieroll'
 import ListPicker from './listpick'
 import Conditionals from './conditionals'
 import UseMap from './mapusage'
+import ShoppingList from './shoppingList'
 
 function App() {
+
+  const data = [
+    { item: "eggs", quantity: 32, completed: false },
+    { item: "banana", quantity: 14, completed: true },
+    { item: "chips", quantity: 15, completed: false },
+    { item: "curd", quantity: 10, completed: true },
+  ]
+
   return (
     <>
       {/* <Greeter name="ganesh" />
@@ -22,7 +31,8 @@ function App() {
       <Conditionals />
       <Conditionals />
       <Conditionals /> */}
-      <UseMap colors={['green', 'orange', 'red']} />
+      {/* <UseMap colors={['green', 'orange', 'red']} /> */}
+      <ShoppingList items={data} />
     </>
   )
 }
