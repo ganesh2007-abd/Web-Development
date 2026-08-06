@@ -12,6 +12,7 @@ import ShoppingList from './shoppingList'
 import Property from './Property'
 import Clicker from './Clicker'
 import FormEvent from './FormEvent'
+import ClickerExe from './ClickerExe'
 
 function App() {
 
@@ -47,7 +48,8 @@ function App() {
       {/* <ShoppingList items={data} /> */}
       {/* <Property properties={properties} /> */}
       {/* <Clicker /> */}
-      <FormEvent />
+      {/* <FormEvent /> */}
+      <ClickerExe msg="dont click me" />
     </>
   )
 }
