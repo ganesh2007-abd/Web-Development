@@ -10,6 +10,7 @@ import Conditionals from './conditionals'
 import UseMap from './mapusage'
 import ShoppingList from './shoppingList'
 import Property from './Property'
+import Clicker from './Clicker'
 
 function App() {
 
@@ -43,7 +44,8 @@ function App() {
       <Conditionals /> */}
       {/* <UseMap colors={['green', 'orange', 'red']} /> */}
       {/* <ShoppingList items={data} /> */}
-      <Property properties={properties} />
+      {/* <Property properties={properties} /> */}
+      <Clicker />
     </>
   )
 }
