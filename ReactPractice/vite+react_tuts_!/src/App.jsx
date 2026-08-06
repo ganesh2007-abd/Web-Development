@@ -11,6 +11,7 @@ import UseMap from './mapusage'
 import ShoppingList from './shoppingList'
 import Property from './Property'
 import Clicker from './Clicker'
+import FormEvent from './FormEvent'
 
 function App() {
 
@@ -45,7 +46,8 @@ function App() {
       {/* <UseMap colors={['green', 'orange', 'red']} /> */}
       {/* <ShoppingList items={data} /> */}
       {/* <Property properties={properties} /> */}
-      <Clicker />
+      {/* <Clicker /> */}
+      <FormEvent />
     </>
   )
 }
