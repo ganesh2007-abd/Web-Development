@@ -15,6 +15,7 @@ import FormEvent from './FormEvent'
 import ClickerExe from './ClickerExe'
 import StateTut from './stateTut'
 import Toggler from './Toggler'
+import TogglerCounter from './ToggleCounter'
 
 function App() {
 
@@ -53,7 +54,9 @@ function App() {
       {/* <FormEvent /> */}
       {/* <ClickerExe msg="dont click me" /> */}
       {/* <StateTut /> */}
-      <Toggler />
+      {/* <Toggler /> */}
+      <TogglerCounter />
+
     </>
   )
 }
