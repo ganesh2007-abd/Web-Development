@@ -13,6 +13,7 @@ import Property from './Property'
 import Clicker from './Clicker'
 import FormEvent from './FormEvent'
 import ClickerExe from './ClickerExe'
+import StateTut from './stateTut'
 
 function App() {
 
@@ -49,7 +50,8 @@ function App() {
       {/* <Property properties={properties} /> */}
       {/* <Clicker /> */}
       {/* <FormEvent /> */}
-      <ClickerExe msg="dont click me" />
+      {/* <ClickerExe msg="dont click me" /> */}
+      <StateTut />
     </>
   )
 }
