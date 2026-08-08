@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Counter from './counter'
 import './App.css'
 import InitialiserDemo from './InitialiserDemo'
-import ScoreKeeper from './scoreKeeper'
+import ScoreKeeper from './ScoreKeeper'
 import EmojiClicker from './emojiClicker'
 
 
@@ -12,8 +12,8 @@ function App() {
   return (
     <>
       {/* <InitialiserDemo /> */}
-      {/* <ScoreKeeper /> */}
-      <EmojiClicker />
+      <ScoreKeeper />
+      {/* <EmojiClicker /> */}
     </>
   )
 }
