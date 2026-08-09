@@ -12,8 +12,8 @@ function App() {
   return (
     <>
       {/* <InitialiserDemo /> */}
-      <ScoreKeeper />
-      {/* <EmojiClicker /> */}
+      {/* <ScoreKeeper /> */}
+      <EmojiClicker />
     </>
   )
 }
