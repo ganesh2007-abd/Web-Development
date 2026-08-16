@@ -1,0 +1,14 @@
+import { useState } from "react";
+
+export default function UserName() {
+    const [input, setinput] = useState("")
+    const updater = (evt) => {
+        setinput(evt.target.value)
+    }
+    return (
+        <div>
+            <input type="text" value={input} onChange={updater} />
+            <button>Submit</button>
+        </div>
+    )
+}
