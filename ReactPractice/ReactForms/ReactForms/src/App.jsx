@@ -5,6 +5,7 @@ import heroImg from './assets/hero.png'
 import './App.css'
 import UserName from "./username.jsx"
 import SignUpForm from './SignUpForm.jsx'
+import BetterSignUpForm from './BetterSignUpForm.jsx'
 
 function App() {
 
@@ -12,7 +13,8 @@ function App() {
   return (
     <>
       {/* <UserName /> */}
-      <SignUpForm />
+      {/* <SignUpForm /> */}
+      <BetterSignUpForm />
     </>
   )
 }
