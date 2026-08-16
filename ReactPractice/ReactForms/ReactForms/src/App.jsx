@@ -4,13 +4,15 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import UserName from "./username.jsx"
+import SignUpForm from './SignUpForm.jsx'
 
 function App() {
 
 
   return (
     <>
-      <UserName />
+      {/* <UserName /> */}
+      <SignUpForm />
     </>
   )
 }
