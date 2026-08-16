@@ -7,7 +7,8 @@ export default function UserName() {
     }
     return (
         <div>
-            <input type="text" value={input} onChange={updater} />
+            <label htmlFor="Username">Enter Username</label>
+            <input type="text" value={input} onChange={updater} id="Username" />
             <button>Submit</button>
         </div>
     )
